@@ -12,11 +12,11 @@ var version = 'v3::';
 var offlineFiles = [
   '',
   'index.html',
-  '/js/main.js',
-  '/js/firebase-config.js',
-  '/css/shopping-list.css',
-  '/img/icon192.png',
-  '/img/icon512.png'
+  'js/main.js',
+  'js/firebase-config.js',
+  'css/shopping-list.css',
+  'img/icon192.png',
+  'img/icon512.png'
 ];
 
 /* The install event fires when the service worker is first installed.
