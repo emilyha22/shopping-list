@@ -27,7 +27,7 @@ function displayItems(doc){
 
 var checkbox = document.createElement('input');
 let li = document.createElement('li');
-var name = document.createElement('p');
+let name = document.createElement('p');
 let notes = document.createElement('p');
 let trash = document.createElement('div');
 let flex1 = document.createElement('div');
@@ -122,11 +122,12 @@ changes.forEach(change => {
     let id = list.querySelector('[data-id=' + change.doc.id + ']');
     console.log(id);
     if (id) {
-      let name = document.querySelector(".name");
-      newName = name.innerHTML;
-      console.log(change.doc.data().item);
-      console.log(newName);
-      newName = change.doc.data().item;
+      // get class with item name
+      let name = id.querySelector(".name").innerHTML;
+      // get innerHTML of item name in class
+      console.log(name);
+      // replace inner html with new item
+      id.querySelector(".name").innerHTML = change.doc.data().item;
   }
 }
   else if (change.type == 'removed'){
