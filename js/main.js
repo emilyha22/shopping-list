@@ -123,7 +123,9 @@ changes.forEach(change => {
     console.log(id);
     if (id) {
       let name = document.querySelector(".name");
-      newName = name.innerHTML.value;
+      newName = name.innerHTML;
+      console.log(change.doc.data().item);
+      console.log(newName);
       newName = change.doc.data().item;
   }
 }
