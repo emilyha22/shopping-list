@@ -27,7 +27,7 @@ function displayItems(doc){
 
 var checkbox = document.createElement('input');
 let li = document.createElement('li');
-let name = document.createElement('p');
+var name = document.createElement('p');
 let notes = document.createElement('p');
 let trash = document.createElement('div');
 let flex1 = document.createElement('div');
@@ -114,9 +114,10 @@ let changes = snapshot.docChanges();
 changes.forEach(change => {
   if (change.type == 'added'){
     displayItems(change.doc);
+    console.log("change was updated");
   }
   else if (change.type == 'modified'){
-
+    displayItems(change.doc);
   }
   else if (change.type == 'removed'){
     let removeLi = list.querySelector('[data-id=' + change.doc.id + ']');
