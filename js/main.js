@@ -114,10 +114,10 @@ let changes = snapshot.docChanges();
 changes.forEach(change => {
   if (change.type == 'added'){
     displayItems(change.doc);
-    console.log("change was updated");
+    console.log("added change");
   }
   else if (change.type == 'modified'){
-    displayItems(change.doc);
+    console.log("modifed change")
   }
   else if (change.type == 'removed'){
     let removeLi = list.querySelector('[data-id=' + change.doc.id + ']');
@@ -132,7 +132,6 @@ changes.forEach(change => {
 addButton.addEventListener("click", (e) =>{
   const nameToFirestore = inputName.value;
   const noteToFirestore = inputNotes.value;
-  console.log("I am going to add " + nameToFirestore + " and " + noteToFirestore + " to Firestore");
   db.collection("shoppingList").add({
       item: nameToFirestore,
       notes: noteToFirestore,
@@ -140,7 +139,6 @@ addButton.addEventListener("click", (e) =>{
   }).then(function(){
       inputName.value = "";
       inputNotes.value = "";
-      console.log("status saved!");
   }).catch(function(){
       console.log("got an error: ", error);
   });
