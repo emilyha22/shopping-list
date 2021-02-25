@@ -33,6 +33,7 @@ checkbox.setAttribute('type','checkbox');
 notes.classList.add("notes");
 name.classList.add("name");
 trash.classList.add("trash");
+li.classList.add("draggable");
 
 li.setAttribute('data-id', doc.id);
 name.textContent = doc.data().item;
@@ -45,11 +46,15 @@ flex3.appendChild(trash);
 flex4.appendChild(flex1);
 flex4.appendChild(flex2);
 li.appendChild(flex4)
-li.appendChild(flex3);
+li.appendChild(trash);
 flex4.classList.add("flex4");
 flex2.classList.add("flex2");
 
-
+/*li.appendChild(checkbox);
+li.appendChild(name);
+li.appendChild(notes);
+li.appendChild(trash);
+*/
 shoppingList.appendChild(li);
 
 //trash to do
