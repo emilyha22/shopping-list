@@ -119,20 +119,20 @@ changes.forEach(change => {
     console.log("added change");
   }
   else if (change.type == 'modified'){
-    console.log("modifed change")
-      let list_item = list.querySelector('[data-id=' + change.doc.id + ']');
-      console.log(list_item)
-      if (list_item) {
-        name.textContent = change.doc.data().name
-      }
+    let id = list.querySelector('[data-id=' + change.doc.id + ']');
+    console.log(id);
+    if (id) {
+      let name = document.querySelector(".name");
+      newName = name.innerHTML.value;
+      newName = change.doc.data().item;
   }
+}
   else if (change.type == 'removed'){
     let removeLi = list.querySelector('[data-id=' + change.doc.id + ']');
     list.removeChild(removeLi);
   }
 })
 })
-
 
 
 
