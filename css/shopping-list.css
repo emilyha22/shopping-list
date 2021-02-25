@@ -20,14 +20,15 @@ input{
     margin: 10px 0px;
 }
 
-button{
+button.btn-primary{
     margin: 20px 0px;
 }
 
 p.notes {
     font-size: 13px;
     margin-bottom: 8px;
-    color: #196dca;
+    color: #5f5f5f;
+    margin-top: 3px;
 }
 
 p.name{
@@ -41,6 +42,7 @@ p.name{
 
 .flex2{
     margin-left: 15px;
+    width: 155px;
 }
 
 div.trash{
@@ -53,4 +55,41 @@ div.trash:hover{
 
 input[type=checkbox], input[type=radio]{
     cursor: pointer;
+}
+
+.draggable.dragging{
+    opacity: .5;
+}
+
+button.btn-edit {
+    color: #047bfe;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    height: 32px;
+    font-size: 14px;
+    margin-top: 24px;
+}
+
+button.btn-update {
+    color: #047bfe;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    height: 32px;
+    font-size: 14px;
+    margin-top: 24px;
+}
+
+#shoppingList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 330px;
 }

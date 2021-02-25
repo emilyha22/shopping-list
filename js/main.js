@@ -16,10 +16,16 @@ let inputName = document.querySelector("#name");
 let inputNotes = document.querySelector("#notes");
 let addButton = document.querySelector("#addButton");
 let list = document.querySelector("#shoppingList");
+const draggables = document.querySelectorAll('.draggable');
+var checkbox = document.querySelector("#check");
+
+
+
 
 // display data/items
 function displayItems(doc){
-let checkbox = document.createElement('input');
+
+var checkbox = document.createElement('input');
 let li = document.createElement('li');
 let name = document.createElement('p');
 let notes = document.createElement('p');
@@ -28,33 +34,41 @@ let flex1 = document.createElement('div');
 let flex2 = document.createElement('div');
 let flex3 = document.createElement('div');
 let flex4 = document.createElement('div');
+let btnEdit = document.createElement('button');
+let newUpdate = document.createElement('button');
 
+checkbox.setAttribute("id", "check");
 checkbox.setAttribute('type','checkbox');
+li.setAttribute('data-id', doc.id);
+
 notes.classList.add("notes");
 name.classList.add("name");
 trash.classList.add("trash");
 li.classList.add("draggable");
+btnEdit.classList.add('btn-edit')
+newUpdate.classList.add('btn-update')
 
-li.setAttribute('data-id', doc.id);
 name.textContent = doc.data().item;
 notes.textContent = doc.data().notes;
 trash.textContent = 'x';
+btnEdit.textContent = 'edit';
+newUpdate.textContent="update";
+
+newUpdate.style.display = "none";
+
 flex1.appendChild(checkbox);
 flex2.appendChild(name);
 flex2.appendChild(notes);
 flex3.appendChild(trash);
 flex4.appendChild(flex1);
 flex4.appendChild(flex2);
-li.appendChild(flex4)
+li.appendChild(flex4);
+li.appendChild(btnEdit);
+li.appendChild(newUpdate);
 li.appendChild(trash);
 flex4.classList.add("flex4");
 flex2.classList.add("flex2");
 
-/*li.appendChild(checkbox);
-li.appendChild(name);
-li.appendChild(notes);
-li.appendChild(trash);
-*/
 shoppingList.appendChild(li);
 
 //trash to do
@@ -63,6 +77,35 @@ trash.addEventListener('click', (e) => {
   let idNum = e.target.parentElement.getAttribute('data-id');
   db.collection('shoppingList').doc(idNum).delete();
 })
+
+// edit
+btnEdit.addEventListener('click', (e) =>{
+  e.stopPropagation();
+
+  btnEdit.style.display ="none";
+  newUpdate.style.display = "block";
+  name.style.border = "solid #047bfe 1px";
+  name.style.borderRadius = "5px";
+  notes.style.border = "solid #047bfe 1px";
+  notes.style.borderRadius = "5px";
+  let idNum = e.target.parentElement.getAttribute('data-id');
+  name.setAttribute("contenteditable", "true");
+  notes.setAttribute("contenteditable", "true");
+  newUpdate.addEventListener('click', (e) =>{
+    newUpdate.style.color = "#00733f";
+    newUpdate.textContent = "updated!";
+    name.style.border = "solid #00733f 1px";
+    notes.style.border = "solid #00733f 1px";
+    db.collection('shoppingList').doc(idNum).update({
+      item: name.innerHTML,
+      notes:notes.innerHTML
+  }).then(function (){
+    name.style.border = "none";
+    notes.style.border = "none";
+  })
+})
+})
+
 }
 
 //get data in real time
@@ -72,12 +115,17 @@ changes.forEach(change => {
   if (change.type == 'added'){
     displayItems(change.doc);
   }
+  else if (change.type == 'modified'){
+
+  }
   else if (change.type == 'removed'){
     let removeLi = list.querySelector('[data-id=' + change.doc.id + ']');
     list.removeChild(removeLi);
   }
 })
 })
+
+
 
 
 addButton.addEventListener("click", (e) =>{
@@ -96,3 +144,4 @@ addButton.addEventListener("click", (e) =>{
       console.log("got an error: ", error);
   });
 })
+
