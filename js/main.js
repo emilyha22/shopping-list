@@ -99,10 +99,12 @@ btnEdit.addEventListener('click', (e) =>{
     db.collection('shoppingList').doc(idNum).update({
       item: name.innerHTML,
       notes:notes.innerHTML
-  }).then(function (){
+  }).then(() => {
     name.style.border = "none";
     notes.style.border = "none";
-  })
+  }).catch((error) => {
+    console.error("error updating doc", error);
+  });
 })
 })
 
@@ -118,6 +120,11 @@ changes.forEach(change => {
   }
   else if (change.type == 'modified'){
     console.log("modifed change")
+      let list_item = list.querySelector('[data-id=' + change.doc.id + ']');
+      console.log(list_item)
+      if (list_item) {
+        name.textContent = change.doc.data().name
+      }
   }
   else if (change.type == 'removed'){
     let removeLi = list.querySelector('[data-id=' + change.doc.id + ']');
