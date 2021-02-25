@@ -1,6 +1,56 @@
-li{
+li {
     background-color: whitesmoke;
     list-style-type: none;
-    padding: 15px;
+    padding: 5px 15px;
+    width: 300px;
+    display: flex;
     margin: 20px 0px;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+body{
+    font-family: 'Roboto', serif;
+}
+
+input{
+    border: 0;
+    border-bottom: 1px solid black;
+    overflow: visible;
+    margin: 10px 0px;
+}
+
+button{
+    margin: 20px 0px;
+}
+
+p.notes {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #196dca;
+}
+
+p.name{
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.flex4{
+    display: flex;
+}
+
+.flex2{
+    margin-left: 15px;
+}
+
+div.trash{
+    cursor: pointer;
+}
+
+div.trash:hover{
+    color: #e91e63;
+}
+
+input[type=checkbox], input[type=radio]{
+    cursor: pointer;
 }
