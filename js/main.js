@@ -122,12 +122,14 @@ changes.forEach(change => {
     let id = list.querySelector('[data-id=' + change.doc.id + ']');
     console.log(id);
     if (id) {
-      // get class with item name
+      // get class with item name/note innerhtml
       let name = id.querySelector(".name").innerHTML;
-      // get innerHTML of item name in class
+      let notes = id.querySelector(".notes").innerHTML;
       console.log(name);
+      console.log(notes);
       // replace inner html with new item
       id.querySelector(".name").innerHTML = change.doc.data().item;
+      id.querySelector(".notes").innerHTML = change.doc.data().notes;
   }
 }
   else if (change.type == 'removed'){
