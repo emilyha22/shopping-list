@@ -4,36 +4,48 @@ li {
     padding: 5px 15px;
     width: 300px;
     display: flex;
-    margin: 20px 0px;
+    margin: 10px 0px;
     justify-content: space-between;
     border-radius: 8px;
+    color: white;
+    background-color: #424242;
+}
+
+h1{
+text-align: center;
+color: white;
 }
 
 body{
     font-family: 'Roboto', serif;
+    background: #1f1f1f;
 }
 
 input{
     border: 0;
-    border-bottom: 1px solid black;
+    outline: none;
+    border: none;
     overflow: visible;
     margin: 10px 0px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #ffffff;
 }
 
 button.btn-primary{
-    margin: 20px 0px;
+    margin: 0px 0px 30px 0px;
 }
 
 p.notes {
     font-size: 13px;
     margin-bottom: 8px;
-    color: #5f5f5f;
-    margin-top: 3px;
+    color: #e4e4e4;
+    padding: 5px 5px;
 }
 
 p.name{
-    margin-top: 4px;
     margin-bottom: 0px;
+    padding: 5px 5px;
 }
 
 .flex4{
@@ -50,7 +62,7 @@ div.trash{
 }
 
 div.trash:hover{
-    color: #e91e63;
+    color: #ff7e7e;
 }
 
 input[type=checkbox], input[type=radio]{
@@ -62,7 +74,7 @@ input[type=checkbox], input[type=radio]{
 }
 
 button.btn-edit {
-    color: #047bfe;
+    color: #ff7e7e;
     border: 0;
     border-radius: 5px;
     background: transparent;
@@ -72,7 +84,7 @@ button.btn-edit {
 }
 
 button.btn-update {
-    color: #047bfe;
+    color: rgb(154 255 62);
     border: 0;
     border-radius: 5px;
     background: transparent;

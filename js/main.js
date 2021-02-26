@@ -140,13 +140,6 @@ btnEdit.addEventListener('click', (e) =>{
 })
 })
 
-if (doc.data().check === false){
-  document.getElementById("check").checked = false;
-}
-else if (doc.data().check === true){
-  document.getElementById("check").checked = true;
-}
-
 }
 
 //get data in real time
@@ -186,7 +179,6 @@ addButton.addEventListener("click", (e) =>{
   db.collection("shoppingList").add({
       item: nameToFirestore,
       notes: noteToFirestore,
-      check: true,
       timestamp:firebase.firestore.FieldValue.serverTimestamp()
   }).then(function(){
       inputName.value = "";
