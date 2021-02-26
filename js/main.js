@@ -11,6 +11,38 @@ if ('serviceWorker' in navigator) {
   console.log('CLIENT: service workers are not supported.');
 }
 
+
+
+let deferredPrompt;
+const addBtn = document.querySelector('.add-button');
+addBtn.style.display = 'none';
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI to notify the user they can add to home screen
+  addBtn.style.display = 'block';
+
+  addBtn.addEventListener('click', (e) => {
+    // hide our user interface that shows our A2HS button
+    addBtn.style.display = 'none';
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+  });
+});
+
+
 let outputHeader = document.querySelector("#listOutput");
 let inputName = document.querySelector("#name");
 let inputNotes = document.querySelector("#notes");
@@ -108,6 +140,13 @@ btnEdit.addEventListener('click', (e) =>{
 })
 })
 
+if (doc.data().check === false){
+  document.getElementById("check").checked = false;
+}
+else if (doc.data().check === true){
+  document.getElementById("check").checked = true;
+}
+
 }
 
 //get data in real time
@@ -147,6 +186,7 @@ addButton.addEventListener("click", (e) =>{
   db.collection("shoppingList").add({
       item: nameToFirestore,
       notes: noteToFirestore,
+      check: true,
       timestamp:firebase.firestore.FieldValue.serverTimestamp()
   }).then(function(){
       inputName.value = "";
